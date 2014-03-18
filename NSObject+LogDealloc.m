@@ -32,7 +32,17 @@ static char __logDeallocAssociatedKey__;
 
 - (void)dealloc
 {
-    WeLog( @"dealloc: %@", self.message );
+    //前边这一步最好放在appdelegate中
+    static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    DDLogError(@"this is a error info");
+    DDLogWarn(@"this is a warn info");
+    DDLogInfo(@"this is a info");
+    DDLogDebug(@"log debug");
+    DDLogVerbose(@"Meet George Jetson");
+    
+    DDLogInfo( @"dealloc: %@", self.message );
 }
 
 @end
